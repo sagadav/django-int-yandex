@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+import json
 import os
 from pathlib import Path
 
@@ -21,9 +22,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY", default="secret-test")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", default="True") == "True"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = json.loads(os.environ.get("ALLOWED_HOSTS", default="[]"))
 
 
 # Application definition
