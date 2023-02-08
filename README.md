@@ -5,13 +5,16 @@
 ### Запуск в Dev mode:
 
 1. Настройте виртуальное окружение, пример:
+
 ```
 python -m venv venv
 ```
+
 2. Создайте файл .env с переменными окружения (пример: .env.example)
-3. Установите зависимости и запустите:
+3. Установите зависимости и запустите (пример для Windows):
+
 ```
-pip install -r dev-requirements.txt
+pip install -r requirements\dev.txt
 cd lyceumsite
 py manage.py runserver
 ```
