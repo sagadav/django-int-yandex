@@ -4,8 +4,12 @@
 
 ### Запуск в Dev mode:
 
-Создайте файл .env с переменными окружения (пример: .env.example), далее:
-
+1. Настройте виртуальное окружение, пример:
+```
+python -m venv venv
+```
+2. Создайте файл .env с переменными окружения (пример: .env.example)
+3. Установите зависимости и запустите:
 ```
 pip install -r dev-requirements.txt
 cd lyceumsite
@@ -16,6 +20,8 @@ py manage.py runserver
 
 ```
 SECRET_KEY - секретный ключ
+DEBUG - режим дебага
+ALLOWED_HOSTS - разрешенные хосты
 ```
 
 Django v3.2
