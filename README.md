@@ -1,4 +1,4 @@
-[![Python package](https://github.com/sagadav/django-int-yandex/actions/workflows/python-package.yml/badge.svg)](https://github.com/sagadav/django-int-yandex/actions/workflows/python-package.yml)
+[![Python package](https://github.com/sagadav/django-int-yandex/actions/workflows/python-package.yml/badge.svg?branch=dev)](https://github.com/sagadav/django-int-yandex/actions/workflows/python-package.yml)
 
 Инструкция
 
