@@ -1,10 +1,10 @@
-[![Python package](https://github.com/sagadav/django-int-yandex/actions/workflows/python-package.yml/badge.svg?branch=main)](https://github.com/sagadav/django-int-yandex/actions/workflows/python-package.yml)
+[![Python package](https://github.com/sagadav/django-int-yandex/actions/workflows/python-package.yml/badge.svg)](https://github.com/sagadav/django-int-yandex/actions/workflows/python-package.yml)
 
 Инструкция
 
 ### Запуск в Dev mode:
 
-Создайте файл .env с переменнами окружения, пример в .env.example, далее:
+Создайте файл .env с переменными окружения (пример: .env.example), далее:
 
 ```
 pip install -r dev-requirements.txt
@@ -19,4 +19,4 @@ SECRET_KEY - секретный ключ
 ```
 
 Django v3.2
-Python 3.11
+Python v3.11
