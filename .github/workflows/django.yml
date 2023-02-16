@@ -27,4 +27,5 @@ jobs:
         pip install -r requirements/dev.txt
     - name: Run Tests
       run: |
+        cd lyceumsite
         python manage.py test
