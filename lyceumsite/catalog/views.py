@@ -14,4 +14,4 @@ def regex_num(request, num):
 
 
 def convert_num(request, num):
-    return HttpResponse(f"<body>{num + num}</body>")
+    return HttpResponse(f"{num + num}")

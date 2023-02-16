@@ -21,6 +21,7 @@ class StaticURLTests(TestCase):
     def test_num_converter(self):
         response = Client().get("/catalog/converter/2/")
         self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.content, b"4")
 
     def test_num_converter_string(self):
         response = Client().get("/catalog/converter/awdwadw/")
