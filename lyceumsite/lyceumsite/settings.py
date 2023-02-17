@@ -29,12 +29,6 @@ DEBUG = os.environ.get("DEBUG", default="True") == "True"
 
 ALLOWED_HOSTS = json.loads(os.environ.get("ALLOWED_HOSTS", default="[]"))
 
-if DEBUG:
-    import mimetypes
-
-    mimetypes.add_type("application/javascript", ".js", True)
-
-
 # Application definition
 
 INSTALLED_APPS = [
