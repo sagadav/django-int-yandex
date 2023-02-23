@@ -1,6 +1,8 @@
 from core.validators import validate_slug
 from django.core.exceptions import ValidationError
 from django.db import models
+
+
 from .utils import normalize_name
 
 

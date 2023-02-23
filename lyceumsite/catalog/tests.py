@@ -101,7 +101,7 @@ class ModelsTests(TestCase):
         [
             ("t e s t"),
             ("t#e@s_t"),
-            ("t е s t"), # cyr
+            ("t е s t"),  # cyr
             ("    test  "),
         ]
     )

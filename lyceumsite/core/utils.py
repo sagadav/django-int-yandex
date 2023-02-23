@@ -16,4 +16,3 @@ def normalize_name(name):
         }
     )
     return re.sub(r"[^a-zа-яеё]", "", name.lower().translate(cyr_to_eng))
-
