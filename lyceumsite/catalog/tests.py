@@ -99,6 +99,24 @@ class ModelsTests(TestCase):
 
     @parameterized.expand(
         [
+            ("t e s t"),
+            ("t#e@s_t"),
+            ("t е s t"), # cyr
+            ("    test  "),
+        ]
+    )
+    def test_normalized_name_tag_negative(self, name):
+        item_count = catalog.models.Tag.objects.count()
+        with self.assertRaises(
+            django.core.exceptions.ValidationError, msg=f"{name}"
+        ):
+            item = catalog.models.Tag(name=name, slug="slug")
+            item.full_clean()
+            item.save()
+        self.assertEqual(catalog.models.Tag.objects.count(), item_count)
+
+    @parameterized.expand(
+        [
             ("test_cat", "test-@-slug"),
             ("test_cat", "test-#-hello"),
             ("test_cat", "тест"),
