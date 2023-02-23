@@ -1,5 +1,9 @@
 from core.validators import validate_slug
+from django.core.exceptions import ValidationError
 from django.db import models
+
+
+from .utils import normalize_name
 
 
 class Base(models.Model):
@@ -22,6 +26,24 @@ class BaseSlug(Base):
         max_length=200,
         validators=[validate_slug],
     )
+    normalized_name = models.CharField(
+        null=True,
+        blank=True,
+        editable=True,
+        verbose_name="Нормализированное название",
+        max_length=150,
+    )
 
     class Meta:
         abstract = True
+
+    def clean(self):
+        count = self.__class__.objects.filter(
+            normalized_name=normalize_name(self.name)
+        ).count()
+        if count > 0:
+            raise ValidationError({"name": ["Такое название уже есть"]})
+
+    def save(self, *args, **kwargs):
+        self.normalized_name = normalize_name(self.name)
+        return super().save(*args, **kwargs)
