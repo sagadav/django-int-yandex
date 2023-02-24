@@ -1,4 +1,3 @@
-from core.validators import validate_slug
 from django.db import models
 
 
@@ -16,11 +15,10 @@ class Base(models.Model):
 
 
 class BaseSlug(Base):
-    slug = models.TextField(
+    slug = models.SlugField(
         verbose_name="Артикул",
         unique=True,
         max_length=200,
-        validators=[validate_slug],
     )
 
     class Meta:
