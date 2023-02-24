@@ -19,7 +19,7 @@ cd lyceumsite
 py manage.py runserver
 ```
 
-Переменные окружения:
+### Переменные окружения:
 
 ```
 SECRET_KEY - секретный ключ
@@ -27,10 +27,17 @@ DEBUG - режим дебага
 ALLOWED_HOSTS - разрешенные хосты
 ```
 
-Работа с фикстурами (Fixtures):  
+### Работа с фикстурами (Fixtures):  
 Windows:
 ```cmd
 py lyceumsite\manage.py loaddata fixtures\catalog.json
+```
+
+### Запуск тестов:  
+Windows:
+```cmd
+cd lyceumsite
+py manage.py test
 ```
 
 Django v3.2
