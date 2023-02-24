@@ -52,12 +52,19 @@ class ModelsTests(TestCase):
         self.assertEqual(catalog.models.Item.objects.count(), item_count)
 
     @parameterized.expand(
-        [("test_item", "превосходно"), ("test_item", "роскошно")]
+        [
+            "превосходно",
+            "роскошно",
+            "тест, превосходно!",
+            "test, роскошно,  тест!",
+            " превосходно ",
+            "но роскошно ли?",
+        ]
     )
-    def test_create_item(self, name, text):
+    def test_create_item_text(self, text):
         item_count = catalog.models.Item.objects.count()
         item = catalog.models.Item(
-            name=name,
+            name="test_item",
             text=text,
             category=self.category,
         )
@@ -67,25 +74,30 @@ class ModelsTests(TestCase):
         self.assertEqual(
             catalog.models.Item.objects.count(),
             item_count + 1,
-            f"{name}, {text}",
+            f"{text}",
         )
 
     @parameterized.expand(
-        [
-            ("test_tag", "test-@-slug"),
-            ("test_tag", "test-#-hello"),
-            ("test_tag", "тест"),
-        ]
+        ["превосходное", "роскошное", "тест", "№превосходно_"]
     )
-    def test_tag_wrong_slug(self, name, slug):
-        item_count = catalog.models.Tag.objects.count()
+    def test_create_item_wrong_text(self, text):
+        item_count = catalog.models.Item.objects.count()
         with self.assertRaises(
-            django.core.exceptions.ValidationError, msg=f"{name}, {slug}"
+            django.core.exceptions.ValidationError, msg=f"{text}"
         ):
-            item = catalog.models.Tag(name=name, slug=slug)
+            item = catalog.models.Item(
+                name="test_item",
+                text=text,
+                category=self.category,
+            )
             item.full_clean()
             item.save()
-        self.assertEqual(catalog.models.Tag.objects.count(), item_count)
+            item.tags.add(self.tag)
+        self.assertEqual(
+            catalog.models.Item.objects.count(),
+            item_count,
+            f"{text}",
+        )
 
     def test_create_tag(self):
         item_count = catalog.models.Tag.objects.count()
@@ -114,23 +126,6 @@ class ModelsTests(TestCase):
             item.full_clean()
             item.save()
         self.assertEqual(catalog.models.Tag.objects.count(), item_count)
-
-    @parameterized.expand(
-        [
-            ("test_cat", "test-@-slug"),
-            ("test_cat", "test-#-hello"),
-            ("test_cat", "тест"),
-        ]
-    )
-    def test_category_wrong_slug(self, name, slug):
-        item_count = catalog.models.Category.objects.count()
-        with self.assertRaises(
-            django.core.exceptions.ValidationError, msg=f"{name}, {slug}"
-        ):
-            item = catalog.models.Category(name=name, slug=slug)
-            item.full_clean()
-            item.save()
-        self.assertEqual(catalog.models.Category.objects.count(), item_count)
 
     def test_create_category(self):
         item_count = catalog.models.Category.objects.count()

@@ -4,8 +4,6 @@ from django.db import models
 
 
 class Tag(core.models.BaseSlug):
-    pass
-
     class Meta:
         verbose_name = "Тег"
         verbose_name_plural = "Теги"

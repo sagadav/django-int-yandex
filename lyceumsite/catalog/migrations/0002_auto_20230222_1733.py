@@ -16,7 +16,6 @@ class Migration(migrations.Migration):
             field=models.TextField(
                 max_length=200,
                 unique=True,
-                validators=[core.validators.validate_slug],
                 verbose_name="Артикул",
             ),
         ),
@@ -26,7 +25,6 @@ class Migration(migrations.Migration):
             field=models.TextField(
                 max_length=200,
                 unique=True,
-                validators=[core.validators.validate_slug],
                 verbose_name="Артикул",
             ),
         ),
