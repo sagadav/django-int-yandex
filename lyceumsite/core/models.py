@@ -25,9 +25,7 @@ class BaseSlug(Base):
         max_length=200,
     )
     normalized_name = models.CharField(
-        null=True,
-        blank=True,
-        editable=True,
+        editable=False,
         verbose_name="Нормализированное название",
         max_length=150,
     )
