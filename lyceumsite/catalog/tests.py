@@ -52,7 +52,14 @@ class ModelsTests(TestCase):
         self.assertEqual(catalog.models.Item.objects.count(), item_count)
 
     @parameterized.expand(
-        ["превосходно", "роскошно", "тест, превосходно!", "test, роскошно,  тест!", " превосходно ", "но роскошно ли?"]
+        [
+            "превосходно",
+            "роскошно",
+            "тест, превосходно!",
+            "test, роскошно,  тест!",
+            " превосходно ",
+            "но роскошно ли?",
+        ]
     )
     def test_create_item_text(self, text):
         item_count = catalog.models.Item.objects.count()
@@ -69,6 +76,7 @@ class ModelsTests(TestCase):
             item_count + 1,
             f"{text}",
         )
+
     @parameterized.expand(
         ["превосходное", "роскошное", "тест", "№превосходно_"]
     )
@@ -90,7 +98,7 @@ class ModelsTests(TestCase):
             item_count,
             f"{text}",
         )
-        
+
     def test_create_tag(self):
         item_count = catalog.models.Tag.objects.count()
         tag = catalog.models.Tag(
