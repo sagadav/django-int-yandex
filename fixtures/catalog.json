@@ -50,6 +50,36 @@
     }
 },
 {
+    "model": "catalog.tag",
+    "pk": 6,
+    "fields": {
+        "is_published": true,
+        "name": "привет",
+        "slug": "1",
+        "normalized_name": "privet"
+    }
+},
+{
+    "model": "catalog.tag",
+    "pk": 7,
+    "fields": {
+        "is_published": true,
+        "name": "vivi",
+        "slug": "23",
+        "normalized_name": "vivi"
+    }
+},
+{
+    "model": "catalog.tag",
+    "pk": 8,
+    "fields": {
+        "is_published": true,
+        "name": "тест656привет",
+        "slug": "5454545",
+        "normalized_name": "testprivet"
+    }
+},
+{
     "model": "catalog.category",
     "pk": 1,
     "fields": {
