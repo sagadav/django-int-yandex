@@ -34,9 +34,13 @@ class BaseSlug(Base):
         abstract = True
 
     def clean(self):
-        count = self.__class__.objects.filter(
-            normalized_name=normalize_name(self.name)
-        ).count()
+        count = (
+            self.__class__.objects.filter(
+                normalized_name=normalize_name(self.name)
+            )
+            .exclude(pk=self.pk)
+            .count()
+        )
         if count > 0:
             raise ValidationError({"name": ["Такое название уже есть"]})
 
