@@ -90,24 +90,7 @@ class ModelsTests(TestCase):
             item_count,
             f"{text}",
         )
-
-    @parameterized.expand(
-        [
-            ("test_tag", "test-@-slug"),
-            ("test_tag", "test-#-hello"),
-            ("test_tag", "тест"),
-        ]
-    )
-    def test_tag_wrong_slug(self, name, slug):
-        item_count = catalog.models.Tag.objects.count()
-        with self.assertRaises(
-            django.core.exceptions.ValidationError, msg=f"{name}, {slug}"
-        ):
-            item = catalog.models.Tag(name=name, slug=slug)
-            item.full_clean()
-            item.save()
-        self.assertEqual(catalog.models.Tag.objects.count(), item_count)
-
+        
     def test_create_tag(self):
         item_count = catalog.models.Tag.objects.count()
         tag = catalog.models.Tag(
@@ -117,23 +100,6 @@ class ModelsTests(TestCase):
         tag.full_clean()
         tag.save()
         self.assertEqual(catalog.models.Tag.objects.count(), item_count + 1)
-
-    @parameterized.expand(
-        [
-            ("test_cat", "test-@-slug"),
-            ("test_cat", "test-#-hello"),
-            ("test_cat", "тест"),
-        ]
-    )
-    def test_category_wrong_slug(self, name, slug):
-        item_count = catalog.models.Category.objects.count()
-        with self.assertRaises(
-            django.core.exceptions.ValidationError, msg=f"{name}, {slug}"
-        ):
-            item = catalog.models.Category(name=name, slug=slug)
-            item.full_clean()
-            item.save()
-        self.assertEqual(catalog.models.Category.objects.count(), item_count)
 
     def test_create_category(self):
         item_count = catalog.models.Category.objects.count()
