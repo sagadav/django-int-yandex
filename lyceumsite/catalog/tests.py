@@ -52,12 +52,12 @@ class ModelsTests(TestCase):
         self.assertEqual(catalog.models.Item.objects.count(), item_count)
 
     @parameterized.expand(
-        [("test_item", "превосходно"), ("test_item", "роскошно")]
+        ["превосходно", "роскошно", "тест, превосходно!", "test, роскошно,  тест!", " превосходно ", "но роскошно ли?"]
     )
-    def test_create_item(self, name, text):
+    def test_create_item_text(self, text):
         item_count = catalog.models.Item.objects.count()
         item = catalog.models.Item(
-            name=name,
+            name="test_item",
             text=text,
             category=self.category,
         )
@@ -67,7 +67,28 @@ class ModelsTests(TestCase):
         self.assertEqual(
             catalog.models.Item.objects.count(),
             item_count + 1,
-            f"{name}, {text}",
+            f"{text}",
+        )
+    @parameterized.expand(
+        ["превосходное", "роскошное", "тест", "№превосходно_"]
+    )
+    def test_create_item_wrong_text(self, text):
+        item_count = catalog.models.Item.objects.count()
+        with self.assertRaises(
+            django.core.exceptions.ValidationError, msg=f"{text}"
+        ):
+            item = catalog.models.Item(
+                name="test_item",
+                text=text,
+                category=self.category,
+            )
+            item.full_clean()
+            item.save()
+            item.tags.add(self.tag)
+        self.assertEqual(
+            catalog.models.Item.objects.count(),
+            item_count,
+            f"{text}",
         )
 
     @parameterized.expand(
