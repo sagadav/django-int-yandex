@@ -2,29 +2,42 @@
 
 Инструкция
 
-### Запуск в Dev mode:
+### Запуск в Dev mode (Windows):
 
 1. Настройте виртуальное окружение, пример:
 
-```
+```cmd
 python -m venv venv
 ```
 
 2. Создайте файл .env с переменными окружения (пример: .env.example)
-3. Установите зависимости и запустите (пример для Windows):
+3. Установите зависимости и запустите:
 
-```
+```cmd
 pip install -r requirements\dev.txt
 cd lyceumsite
 py manage.py runserver
 ```
 
-Переменные окружения:
+### Переменные окружения:
 
 ```
 SECRET_KEY - секретный ключ
 DEBUG - режим дебага
 ALLOWED_HOSTS - разрешенные хосты
+```
+
+### Работа с фикстурами (Fixtures):  
+Windows:
+```cmd
+py lyceumsite\manage.py loaddata fixtures\catalog.json
+```
+
+### Запуск тестов:  
+Windows:
+```cmd
+cd lyceumsite
+py manage.py test
 ```
 
 Django v3.2

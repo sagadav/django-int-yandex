@@ -1,0 +1,155 @@
+[
+{
+    "model": "catalog.tag",
+    "pk": 3,
+    "fields": {
+        "is_published": true,
+        "name": "test_tag_4",
+        "slug": "test-tag-4"
+    }
+},
+{
+    "model": "catalog.tag",
+    "pk": 4,
+    "fields": {
+        "is_published": true,
+        "name": "books",
+        "slug": "books"
+    }
+},
+{
+    "model": "catalog.tag",
+    "pk": 5,
+    "fields": {
+        "is_published": true,
+        "name": "test_tag_3",
+        "slug": "waawfaw"
+    }
+},
+{
+    "model": "catalog.tag",
+    "pk": 6,
+    "fields": {
+        "is_published": true,
+        "name": "tag_2",
+        "slug": "test-tag_two"
+    }
+},
+{
+    "model": "catalog.tag",
+    "pk": 7,
+    "fields": {
+        "is_published": true,
+        "name": "tag_1",
+        "slug": "test-tag-one"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+        "is_published": true,
+        "name": "3333",
+        "slug": "wr3r3wr",
+        "weight": 100
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 4,
+    "fields": {
+        "is_published": true,
+        "name": "1",
+        "slug": "1",
+        "weight": 100
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 5,
+    "fields": {
+        "is_published": true,
+        "name": "2",
+        "slug": "2",
+        "weight": 101
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 6,
+    "fields": {
+        "is_published": true,
+        "name": "55",
+        "slug": "55",
+        "weight": 100
+    }
+},
+{
+    "model": "catalog.item",
+    "pk": 1,
+    "fields": {
+        "is_published": true,
+        "name": "4545",
+        "text": "45454545превосходно",
+        "category": 3,
+        "tags": [
+            3
+        ]
+    }
+},
+{
+    "model": "catalog.item",
+    "pk": 2,
+    "fields": {
+        "is_published": true,
+        "name": "phone",
+        "text": "cool phone превосходно",
+        "category": 4,
+        "tags": [
+            3,
+            4,
+            5
+        ]
+    }
+},
+{
+    "model": "catalog.item",
+    "pk": 3,
+    "fields": {
+        "is_published": true,
+        "name": "test55",
+        "text": "превосходнопревосходно превосходно",
+        "category": 4,
+        "tags": [
+            4
+        ]
+    }
+},
+{
+    "model": "catalog.item",
+    "pk": 4,
+    "fields": {
+        "is_published": true,
+        "name": "232323",
+        "text": "превосходнопревосходнопревосходнопревосходнопревосходно",
+        "category": 5,
+        "tags": [
+            6
+        ]
+    }
+},
+{
+    "model": "catalog.item",
+    "pk": 5,
+    "fields": {
+        "is_published": true,
+        "name": "awdawdawdwadwad",
+        "text": "awdwadwad роскошно",
+        "category": 6,
+        "tags": [
+            4,
+            6
+        ]
+    }
+}
+]
