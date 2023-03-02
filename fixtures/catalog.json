@@ -1,32 +1,12 @@
 [
 {
     "model": "catalog.tag",
-    "pk": 1,
-    "fields": {
-        "is_published": true,
-        "name": "sagadav",
-        "slug": "make-make",
-        "normalized_name": "sagadav"
-    }
-},
-{
-    "model": "catalog.tag",
-    "pk": 2,
-    "fields": {
-        "is_published": true,
-        "name": "test11",
-        "slug": "awd",
-        "normalized_name": "test"
-    }
-},
-{
-    "model": "catalog.tag",
     "pk": 3,
     "fields": {
         "is_published": true,
-        "name": "books",
-        "slug": "books",
-        "normalized_name": "books"
+        "name": "test_tag_4",
+        "slug": "test-tag-4",
+        "normalized_name": ""
     }
 },
 {
@@ -34,9 +14,9 @@
     "pk": 4,
     "fields": {
         "is_published": true,
-        "name": "testtag",
-        "slug": "testtag",
-        "normalized_name": "testtag"
+        "name": "books",
+        "slug": "books",
+        "normalized_name": ""
     }
 },
 {
@@ -44,9 +24,9 @@
     "pk": 5,
     "fields": {
         "is_published": true,
-        "name": "best",
-        "slug": "best",
-        "normalized_name": "best"
+        "name": "test_tag_3",
+        "slug": "waawfaw",
+        "normalized_name": ""
     }
 },
 {
@@ -54,9 +34,9 @@
     "pk": 6,
     "fields": {
         "is_published": true,
-        "name": "������",
-        "slug": "1",
-        "normalized_name": "privet"
+        "name": "tag_2",
+        "slug": "test-tag_two",
+        "normalized_name": ""
     }
 },
 {
@@ -64,19 +44,9 @@
     "pk": 7,
     "fields": {
         "is_published": true,
-        "name": "vivi",
-        "slug": "23",
-        "normalized_name": "vivi"
-    }
-},
-{
-    "model": "catalog.tag",
-    "pk": 8,
-    "fields": {
-        "is_published": true,
-        "name": "����656������",
-        "slug": "5454545",
-        "normalized_name": "testprivet"
+        "name": "tag_1",
+        "slug": "test-tag-one",
+        "normalized_name": ""
     }
 },
 {
@@ -84,21 +54,86 @@
     "pk": 1,
     "fields": {
         "is_published": true,
-        "name": "awfawf",
-        "slug": "awfawf",
-        "normalized_name": "awfawf",
+        "name": "1",
+        "slug": "1",
+        "normalized_name": "",
         "weight": 100
     }
 },
 {
     "model": "catalog.category",
-    "pk": 2,
+    "pk": 3,
     "fields": {
         "is_published": true,
-        "name": "awdawd",
-        "slug": "awdawd",
-        "normalized_name": "awdawd",
+        "name": "3333",
+        "slug": "wr3r3wr",
+        "normalized_name": "",
         "weight": 100
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 4,
+    "fields": {
+        "is_published": true,
+        "name": "1",
+        "slug": "1awdwad",
+        "normalized_name": "",
+        "weight": 100
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 5,
+    "fields": {
+        "is_published": true,
+        "name": "2",
+        "slug": "2",
+        "normalized_name": "",
+        "weight": 101
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 6,
+    "fields": {
+        "is_published": true,
+        "name": "55",
+        "slug": "55",
+        "normalized_name": "",
+        "weight": 100
+    }
+},
+{
+    "model": "catalog.imagemodel",
+    "pk": 1,
+    "fields": {
+        "image": "catalog/1-грамм-кокаина_286_булок-хлеба_7gPFp83.png",
+        "item": null
+    }
+},
+{
+    "model": "catalog.imagemodel",
+    "pk": 2,
+    "fields": {
+        "image": "catalog/Новый_проект_4.jpg",
+        "item": null
+    }
+},
+{
+    "model": "catalog.imagemodel",
+    "pk": 4,
+    "fields": {
+        "image": "catalog/1-грамм-кокаина_286_булок-хлеба_ppTWhJm.png",
+        "item": 1
+    }
+},
+{
+    "model": "catalog.imagemodel",
+    "pk": 5,
+    "fields": {
+        "image": "catalog/faq_lCtqnir.jpg",
+        "item": 5
     }
 },
 {
@@ -106,12 +141,12 @@
     "pk": 1,
     "fields": {
         "is_published": true,
-        "name": "best_item",
-        "text": "�����������",
-        "category": 1,
+        "name": "4545",
+        "main_image": "",
+        "text": "45454545превосходно",
+        "category": 3,
         "tags": [
-            1,
-            2
+            3
         ]
     }
 },
@@ -120,11 +155,14 @@
     "pk": 2,
     "fields": {
         "is_published": true,
-        "name": "test_item2",
-        "text": "�����������",
-        "category": 2,
+        "name": "phone",
+        "main_image": "",
+        "text": "cool phone превосходно",
+        "category": 4,
         "tags": [
-            2
+            3,
+            4,
+            5
         ]
     }
 },
@@ -133,11 +171,12 @@
     "pk": 3,
     "fields": {
         "is_published": true,
-        "name": "awdawd",
-        "text": "�����������",
-        "category": 2,
+        "name": "test55",
+        "main_image": "",
+        "text": "превосходнопревосходно превосходно",
+        "category": 4,
         "tags": [
-            2
+            4
         ]
     }
 },
@@ -146,11 +185,12 @@
     "pk": 4,
     "fields": {
         "is_published": true,
-        "name": "awdawdawfaw",
-        "text": "�����������",
-        "category": 2,
+        "name": "232323",
+        "main_image": "",
+        "text": "превосходнопревосходнопревосходнопревосходнопревосходно",
+        "category": 5,
         "tags": [
-            3
+            6
         ]
     }
 },
@@ -159,11 +199,13 @@
     "pk": 5,
     "fields": {
         "is_published": true,
-        "name": "2323",
-        "text": "�����������",
-        "category": 1,
+        "name": "awdawdawdwadwad",
+        "main_image": "catalog/faq_6ClScix.jpg",
+        "text": "awdwadwad роскошно",
+        "category": 6,
         "tags": [
-            2
+            4,
+            6
         ]
     }
 }
