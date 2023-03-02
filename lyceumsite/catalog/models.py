@@ -3,6 +3,7 @@ import core
 from django.db import models
 from django.utils.html import mark_safe
 from sorl.thumbnail import get_thumbnail
+from tinymce.models import HTMLField
 
 
 class Tag(core.models.BaseSlug):
@@ -49,8 +50,9 @@ class Item(core.models.Base):
         null=True,
         blank=True,
     )
-    text = models.TextField(
-        verbose_name="Описание", validators=[validate_text]
+    text = HTMLField(
+        verbose_name="Описание",
+        validators=[validate_text],
     )
     category = models.ForeignKey(
         "category",

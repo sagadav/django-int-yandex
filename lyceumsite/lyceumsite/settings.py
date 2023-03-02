@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     "homepage.apps.HomepageConfig",
     "sorl.thumbnail",
     "debug_toolbar",
-    # "django_cleanup.apps.CleanupConfig",
+    "django_cleanup.apps.CleanupConfig",
+    "tinymce",
 ]
 
 MIDDLEWARE = [
@@ -143,3 +144,18 @@ STATICFILES_DIRS = [BASE_DIR / "static_dev"]
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 MEDIA_ROOT = BASE_DIR.parent / "media"
 MEDIA_URL = "/media/"
+
+TINYMCE_DEFAULT_CONFIG = {
+    "height": "320px",
+    "width": "960px",
+    "menubar": "",
+    "skin": "oxide-dark",
+    "content_css": "dark",
+    "toolbar": "undo redo | bold italic underline"
+    "strikethrough | fontselect | alignleft "
+    "aligncenter alignright alignjustify |"
+    "outdent indent |  numlist bullist checklist |"
+    "forecolor backcolor casechange",
+    "custom_undo_redo_levels": 10,
+    "language": "ru_RU",
+}
