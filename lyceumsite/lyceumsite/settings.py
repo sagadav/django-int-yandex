@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     "homepage.apps.HomepageConfig",
     "sorl.thumbnail",
     "debug_toolbar",
-    # "django_cleanup.apps.CleanupConfig",
+    "django_cleanup.apps.CleanupConfig",
 ]
 
 MIDDLEWARE = [
