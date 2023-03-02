@@ -4,3 +4,6 @@ pytz==2022.7.1
 sqlparse==0.4.3
 python-dotenv==0.21.1
 transliterate==1.10.2
+Pillow==9.4.0
+sorl-thumbnail==12.9.0
+django-cleanup==7.0.0

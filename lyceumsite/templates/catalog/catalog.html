@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<h1 class="mb-2">Каталог</h1>
+<div class="mt-5 row gap-2">
+  <a href="{% url 'catalog:detail' 1 %}" class="col border py-5 button text-center">Товар 1</a>
+  <a href="{% url 'catalog:detail' 2 %}" class="col border py-5 button text-center">Товар 2</a>
+  <a href="{% url 'catalog:detail' 3 %}" class="col border py-5 button text-center">Товар 3</a>
+</div>
+{% endblock content %}

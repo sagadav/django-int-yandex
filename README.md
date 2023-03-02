@@ -27,10 +27,15 @@ DEBUG - режим дебага
 ALLOWED_HOSTS - разрешенные хосты
 ```
 
-### Работа с фикстурами (Fixtures):  
-Windows:
+### Работа с фикстурами (Fixtures):
+#### Windows:  
+load:
 ```cmd
-py lyceumsite\manage.py loaddata fixtures\catalog.json
+py lyceumsite\manage.py loaddata fixtures\data.json
+```
+dump:
+```cmd
+python -Xutf8 lyceumsite\manage.py dumpdata APP_NAME --indent=4 > fixtures\data.json
 ```
 
 ### Запуск тестов:  

@@ -1,0 +1,39 @@
+{% load static %}
+<header
+class="container d-flex flex-wrap justify-content-center align-items-center py-3 border-bottom"
+>
+<a
+  href="/"
+  class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none"
+>
+  <img width="70" src="{% static 'img/logo.png' %}" alt="" />
+  <span class="ms-3 fs-4">Сайт</span>
+</a>
+<ul class="nav nav-pills">
+  {% with request.resolver_match.view_name as view_name %}
+  <li class="nav-item">
+    <a
+      href="{% url 'home:index' %}"
+      class="nav-link {% if view_name == 'home:index' %}active{% endif %}"
+      aria-current="page"
+      >На главную</a
+    >
+  </li>
+  <li class="nav-item">
+    <a
+      href="{% url 'about:index' %}"
+      class="nav-link {% if view_name == 'about:index' %}active{% endif %}"
+      >О проекте</a
+    >
+  </li>
+  <li class="nav-item">
+    <a
+      href="{% url 'catalog:list' %}"
+      class="nav-link {% if view_name == 'catalog:list' %}active{% endif %}"
+    >
+      Каталог товаров
+    </a>
+  </li>
+  {% endwith %}
+</ul>
+</header>
