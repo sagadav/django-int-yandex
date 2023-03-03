@@ -1,5 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.utils.html import mark_safe
+from sorl.thumbnail import get_thumbnail
 
 
 from .utils import normalize_name
@@ -48,3 +50,24 @@ class BaseSlug(Base):
     def save(self, *args, **kwargs):
         self.normalized_name = normalize_name(self.name)
         return super().save(*args, **kwargs)
+
+
+class BaseImage(models.Model):
+    image = models.ImageField("Изображение", upload_to="img/")
+
+    class Meta:
+        abstract = True
+
+    def get_image_x1280(self):
+        return get_thumbnail(self.image, "1280", quality=51)
+
+    def get_image_300x300(self):
+        return get_thumbnail(self.image, "300x300", quality=51, crop="center")
+
+    def image_tbh(self):
+        if self.image:
+            return mark_safe(f"<img src='{self.get_image_300x300().url}' />")
+        else:
+            return "Изображения нет"
+
+    image_tbh.short_description = "Изображение"
