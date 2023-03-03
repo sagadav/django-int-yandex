@@ -53,7 +53,7 @@ class BaseSlug(Base):
 
 
 class BaseImage(models.Model):
-    image = models.ImageField("Изображение", upload_to="img/")
+    image = models.ImageField("Изображение", upload_to="img/", blank=True)
 
     class Meta:
         abstract = True
