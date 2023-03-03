@@ -13,7 +13,9 @@ import json
 import os
 from pathlib import Path
 
+from django_cleanup.signals import cleanup_pre_delete
 from dotenv import load_dotenv
+from sorl.thumbnail import delete
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -143,3 +145,11 @@ STATICFILES_DIRS = [BASE_DIR / "static_dev"]
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 MEDIA_ROOT = BASE_DIR.parent / "media"
 MEDIA_URL = "/media/"
+
+
+# sorl thumbnail cleanup
+def sorl_delete(**kwargs):
+    delete(kwargs["file"])
+
+
+cleanup_pre_delete.connect(sorl_delete)
