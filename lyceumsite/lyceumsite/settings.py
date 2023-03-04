@@ -163,6 +163,8 @@ TINYMCE_DEFAULT_CONFIG = {
 }
 
 # sorl thumbnail cleanup
+
+
 def sorl_delete(**kwargs):
     delete(kwargs["file"])
 
