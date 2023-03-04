@@ -1,12 +1,13 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 
 
 def item_list(request):
-    return HttpResponse("<body>Список элементов</body>")
+    return render(request, "catalog/catalog.html")
 
 
 def item_detail(request, id):
-    return HttpResponse(f"<body>Подробно элемент {id}</body>")
+    return render(request, "catalog/detail.html")
 
 
 def regex_num(request, num):
