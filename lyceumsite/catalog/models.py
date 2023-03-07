@@ -20,11 +20,30 @@ class Category(core.models.BaseSlug):
 class ImageModel(core.models.BaseImage):
     item = models.ForeignKey(
         "item",
+        related_name="item_image",
         on_delete=models.CASCADE,
     )
 
 
+class ItemManager(models.Manager):
+    def published(self):
+        return (
+            self.get_queryset()
+            .filter(is_published=True)
+            .select_related("category")
+            .prefetch_related(
+                models.Prefetch(
+                    "tags", queryset=Tag.objects.all().only("name")
+                )
+            )
+            .only("name", "text", "category__name")
+        )
+
+
 class Item(core.models.Base, core.models.BaseImage):
+    objects = ItemManager()
+
+    is_on_main = models.BooleanField(default=False)
     text = models.TextField(
         verbose_name="Описание", validators=[validate_text]
     )

@@ -2,5 +2,25 @@
 {% load static %}
 {% block page_title %}Товар{% endblock page_title %}
 {% block content %}
-<h1 class="mb-2">Страница товара</h1>
+<h1 class="mb-2">Страница товара {{ item.name }}</h1>
+<div>
+  <p>{{ item.text }}</p>
+</div>
+<div>
+  {% if item.image %}<img src="{{ item.image.url }}" alt="" width="200">{% endif %}
+  {% if item.item_image.all %}
+    <h6>Gallery:</h6>
+    <div class="row">
+      {% for image_model in item.item_image.all %}
+        <img src="{{ image_model.image.url }}" class="col-md-4" />
+      {% endfor %}
+    </div>
+  {% endif %}
+  <p>{{ item.category.name }}</p>
+  <div class="d-flex flex-wrap card-subtitle mt-2 text-muted">
+    {% for tag in item.tags.all %}
+      <span class="me-2">#{{ tag.name }}</span>
+    {% endfor %}
+  </div>
+</div>
 {% endblock content %}

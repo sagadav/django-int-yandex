@@ -1,6 +1,7 @@
 import catalog.models
 import django.core.exceptions
 from django.test import Client, TestCase
+import django.urls
 from parameterized import parameterized
 
 
@@ -39,6 +40,12 @@ class ModelsTests(TestCase):
             is_published=True,
             name="test",
             slug="test-tag-slug",
+        )
+        cls.item = catalog.models.Item.objects.create(
+            is_published=True,
+            name="test-item-098",
+            text="превосходно",
+            category=cls.category,
         )
 
     def test_unable_create_without_specific_words(self):
@@ -138,3 +145,16 @@ class ModelsTests(TestCase):
         self.assertEqual(
             catalog.models.Category.objects.count(), item_count + 1
         )
+
+    def test_catalog_correct_context(self):
+        response = django.test.Client().get(
+            django.urls.reverse("catalog:list")
+        )
+        self.assertIn("items", response.context)
+        self.assertEqual(response.context["items"].count(), 1)
+
+    def test_catalog_detail_correct_context(self):
+        response = django.test.Client().get(
+            django.urls.reverse("catalog:detail", args=[self.item.pk])
+        )
+        self.assertIn("item", response.context)
