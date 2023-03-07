@@ -16,6 +16,7 @@ python -m venv venv
 ```cmd
 pip install -r requirements\dev.txt
 cd lyceumsite
+py manage.py migrate
 py manage.py runserver
 ```
 
@@ -36,6 +37,11 @@ py lyceumsite\manage.py loaddata fixtures\data.json
 dump:
 ```cmd
 python -Xutf8 lyceumsite\manage.py dumpdata APP_NAME --indent=4 > fixtures\data.json
+```
+
+### Создание супер-пользователя:
+```cmd
+py manage.py createsuperuser
 ```
 
 ### Запуск тестов:  

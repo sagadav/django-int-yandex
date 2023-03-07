@@ -13,7 +13,9 @@ import json
 import os
 from pathlib import Path
 
+from django_cleanup.signals import cleanup_pre_delete
 from dotenv import load_dotenv
+from sorl.thumbnail import delete
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -159,3 +161,10 @@ TINYMCE_DEFAULT_CONFIG = {
     "custom_undo_redo_levels": 10,
     "language": "ru_RU",
 }
+
+# sorl thumbnail cleanup
+def sorl_delete(**kwargs):
+    delete(kwargs["file"])
+
+
+cleanup_pre_delete.connect(sorl_delete)
