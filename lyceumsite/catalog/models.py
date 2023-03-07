@@ -1,6 +1,10 @@
 from catalog.validators import validate_text
 import core
 from django.db import models
+<<<<<<< HEAD
+=======
+from tinymce.models import HTMLField
+>>>>>>> 3752c1b76be3395f4d8d09cd0fd245951c9ada97
 
 
 class Tag(core.models.BaseSlug):
@@ -44,8 +48,9 @@ class Item(core.models.Base, core.models.BaseImage):
     objects = ItemManager()
 
     is_on_main = models.BooleanField(default=False)
-    text = models.TextField(
-        verbose_name="Описание", validators=[validate_text]
+    text = HTMLField(
+        verbose_name="Описание",
+        validators=[validate_text],
     )
     category = models.ForeignKey(
         "category",
