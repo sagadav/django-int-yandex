@@ -1,10 +1,7 @@
 from catalog.validators import validate_text
 import core
 from django.db import models
-<<<<<<< HEAD
-=======
 from tinymce.models import HTMLField
->>>>>>> 3752c1b76be3395f4d8d09cd0fd245951c9ada97
 
 
 class Tag(core.models.BaseSlug):
