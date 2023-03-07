@@ -16,6 +16,7 @@ python -m venv venv
 ```cmd
 pip install -r requirements\dev.txt
 cd lyceumsite
+py manage.py migrate
 py manage.py runserver
 ```
 
@@ -27,10 +28,20 @@ DEBUG - режим дебага
 ALLOWED_HOSTS - разрешенные хосты
 ```
 
-### Работа с фикстурами (Fixtures):  
-Windows:
+### Работа с фикстурами (Fixtures):
+#### Windows:  
+load:
 ```cmd
-py lyceumsite\manage.py loaddata fixtures\catalog.json
+py lyceumsite\manage.py loaddata fixtures\data.json
+```
+dump:
+```cmd
+python -Xutf8 lyceumsite\manage.py dumpdata APP_NAME --indent=4 > fixtures\data.json
+```
+
+### Создание супер-пользователя:
+```cmd
+py manage.py createsuperuser
 ```
 
 ### Запуск тестов:  

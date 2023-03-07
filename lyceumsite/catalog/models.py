@@ -17,7 +17,14 @@ class Category(core.models.BaseSlug):
         verbose_name_plural = "Категории"
 
 
-class Item(core.models.Base):
+class ImageModel(core.models.BaseImage):
+    item = models.ForeignKey(
+        "item",
+        on_delete=models.CASCADE,
+    )
+
+
+class Item(core.models.Base, core.models.BaseImage):
     text = models.TextField(
         verbose_name="Описание", validators=[validate_text]
     )
