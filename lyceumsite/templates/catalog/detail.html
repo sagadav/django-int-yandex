@@ -7,12 +7,12 @@
   <p>{{ item.text }}</p>
 </div>
 <div>
-  {% if item.image %}<img src="{{ item.image.url }}" alt="" width="200">{% endif %}
+  {% if item.image %}<img src="{{ item.get_image_300x300.url }}" alt="">{% endif %}
   {% if item.item_image.all %}
     <h6>Gallery:</h6>
     <div class="row">
       {% for image_model in item.item_image.all %}
-        <img src="{{ image_model.image.url }}" class="col-md-4" />
+        <img src="{{ image_model.get_image_300x300.url }}" class="col-md-4" />
       {% endfor %}
     </div>
   {% endif %}

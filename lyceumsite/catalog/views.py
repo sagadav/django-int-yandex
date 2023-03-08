@@ -11,14 +11,16 @@ def item_list(request):
 
 def item_detail(request, id):
     queryset = (
-        catalog.models.Item.objects.filter(is_published=True)
-        .select_related("category")
+        catalog.models.Item.objects.published()
         .prefetch_related(
             models.Prefetch(
-                "tags", queryset=catalog.models.Tag.objects.all().only("name")
+                "item_image",
+                queryset=catalog.models.ImageModel.objects.only(
+                    "image", "item_id"
+                ),
             )
         )
-        .prefetch_related("item_image")
+        .only("name", "text", "category__name", "image")
     )
     item = get_object_or_404(queryset, pk=id)
     return render(request, "catalog/detail.html", {"item": item})
