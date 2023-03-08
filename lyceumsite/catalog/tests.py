@@ -150,8 +150,24 @@ class ModelsTests(TestCase):
         response = django.test.Client().get(
             django.urls.reverse("catalog:list")
         )
-        self.assertIn("items", response.context)
-        self.assertEqual(response.context["items"].count(), 1)
+        self.assertIn("categories", response.context)
+        self.assertEqual(response.context["categories"].count(), 1)
+
+    def test_catalog_unnecessary_fields(self):
+        response = django.test.Client().get(
+            django.urls.reverse("catalog:list")
+        )
+        category = response.context["categories"][0]
+        category_fields = category.__dict__
+        self.assertIn("name", category_fields)
+        self.assertNotIn("slug", category_fields)
+        self.assertNotIn("is_published", category_fields)
+
+        item_fields = category.catalog_items.all()[0].__dict__
+        self.assertIn("name", item_fields)
+        self.assertIn("text", item_fields)
+        self.assertNotIn("image", item_fields)
+        self.assertNotIn("is_published", item_fields)
 
     def test_catalog_detail_correct_context(self):
         response = django.test.Client().get(
@@ -188,6 +204,6 @@ class OrderTests(TestCase):
             django.urls.reverse("catalog:list")
         )
         self.assertTupleEqual(
-            tuple(map(lambda x: x.id, response.context["items"])),
+            tuple(map(lambda x: x.id, response.context["categories"])),
             expecting_ids,
         )

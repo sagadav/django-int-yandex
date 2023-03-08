@@ -5,8 +5,8 @@ from django.shortcuts import get_object_or_404, render
 
 
 def item_list(request):
-    items = catalog.models.Item.objects.published().order_by("category__name")
-    return render(request, "catalog/catalog.html", {"items": items})
+    categories = catalog.models.Category.objects.published()
+    return render(request, "catalog/catalog.html", {"categories": categories})
 
 
 def item_detail(request, id):

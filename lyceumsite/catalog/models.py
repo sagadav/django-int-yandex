@@ -10,7 +10,35 @@ class Tag(core.models.BaseSlug):
         verbose_name_plural = "Теги"
 
 
+class CategoryManager(models.Manager):
+    def published(self):
+        return (
+            self.get_queryset()
+            .prefetch_related(
+                models.Prefetch(
+                    "catalog_items",
+                    queryset=Item.objects.filter(is_published=True).only(
+                        "name", "text", "category_id"
+                    ),
+                )
+            )
+            .prefetch_related(
+                models.Prefetch(
+                    "catalog_items__tags",
+                    queryset=Tag.objects.filter(is_published=True).only(
+                        "name"
+                    ),
+                )
+            )
+            .filter(is_published=True)
+            .only("name")
+            .order_by("name")
+        )
+
+
 class Category(core.models.BaseSlug):
+    objects = CategoryManager()
+
     weight = models.PositiveSmallIntegerField(default=100)
 
     class Meta:
