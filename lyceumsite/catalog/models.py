@@ -68,8 +68,12 @@ class ItemManager(models.Manager):
                     ),
                 )
             )
+            .order_by("name")
             .only("name", "text", "category__name")
         )
+
+    def published_order_by_category(self):
+        return self.published().order_by("category__name")
 
 
 class Item(core.models.Base, core.models.BaseImage):

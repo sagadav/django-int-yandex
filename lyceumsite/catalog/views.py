@@ -5,8 +5,8 @@ from django.shortcuts import get_object_or_404, render
 
 
 def item_list(request):
-    categories = catalog.models.Category.objects.published()
-    return render(request, "catalog/catalog.html", {"categories": categories})
+    items = catalog.models.Item.objects.published_order_by_category()
+    return render(request, "catalog/catalog.html", {"items": items})
 
 
 def item_detail(request, id):
@@ -20,7 +20,7 @@ def item_detail(request, id):
                 ),
             )
         )
-        .only("name", "text", "category__name", "image")
+        .only("name", "text", "image", "category__name")
     )
     item = get_object_or_404(queryset, pk=id)
     return render(request, "catalog/detail.html", {"item": item})

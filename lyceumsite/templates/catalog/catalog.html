@@ -4,17 +4,16 @@
 {% block content %}
 <h1 class="mb-2">Каталог</h1>
 <div class="mt-5">
-  {% for category in categories %}
-    {% if category.catalog_items.all %}
-      <h2 class="mb-2">{{category.name}}:</h2>
-      <div class="row gy-2 gx-2">
-        {% for item in category.catalog_items.all %}
+  {% regroup items by category as category_list %}
+  {% for category in category_list %}
+    <h2 class="mb-2">{{ category.grouper }}:</h2>
+    <div class="row gy-2 gx-2">
+      {% for item in category.list %}
         <div class="col-md-4">
           {% include "includes/item-card.html" with item=item %}
         </div>
-        {% endfor %}
-      </div>
-    {% endif %}
+      {% endfor %}
+    </div>
   {% endfor %}
 </div>
 {% endblock content %}
