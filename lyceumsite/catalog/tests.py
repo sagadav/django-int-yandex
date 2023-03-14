@@ -153,6 +153,26 @@ class ModelsTests(TestCase):
         self.assertIn("items", response.context)
         self.assertEqual(response.context["items"].count(), 1)
 
+    def test_catalog_unnecessary_fields(self):
+        response = django.test.Client().get(
+            django.urls.reverse("catalog:list")
+        )
+
+        item = response.context["items"][0]
+        item_fields = item.__dict__
+        self.assertIn("name", item_fields)
+        self.assertIn("text", item_fields)
+        self.assertNotIn("image", item_fields)
+        self.assertNotIn("is_published", item_fields)
+        self.assertNotIn("is_on_main", item_fields)
+
+        category = item.category
+        category_fields = category.__dict__
+        self.assertIn("name", category_fields)
+        self.assertNotIn("slug", category_fields)
+        self.assertNotIn("weight", category_fields)
+        self.assertNotIn("is_published", category_fields)
+
     def test_catalog_detail_correct_context(self):
         response = django.test.Client().get(
             django.urls.reverse("catalog:detail", args=[self.item.pk])
