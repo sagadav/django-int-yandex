@@ -1,13 +1,29 @@
+import catalog.models
+from django.db import models
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
 
 def item_list(request):
-    return render(request, "catalog/catalog.html")
+    items = catalog.models.Item.objects.published().order_by("category__name")
+    return render(request, "catalog/catalog.html", {"items": items})
 
 
 def item_detail(request, id):
-    return render(request, "catalog/detail.html")
+    queryset = (
+        catalog.models.Item.objects.published()
+        .prefetch_related(
+            models.Prefetch(
+                "item_image",
+                queryset=catalog.models.ImageModel.objects.only(
+                    "image", "item_id"
+                ),
+            )
+        )
+        .only("name", "text", "category__name", "image")
+    )
+    item = get_object_or_404(queryset, pk=id)
+    return render(request, "catalog/detail.html", {"item": item})
 
 
 def regex_num(request, num):

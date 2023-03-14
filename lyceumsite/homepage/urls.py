@@ -6,5 +6,4 @@ app_name = "home"
 
 urlpatterns = [
     path("", views.home, name="index"),
-    path("coffee/", views.coffee),
 ]

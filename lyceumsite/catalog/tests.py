@@ -1,6 +1,7 @@
 import catalog.models
 import django.core.exceptions
 from django.test import Client, TestCase
+import django.urls
 from parameterized import parameterized
 
 
@@ -39,6 +40,12 @@ class ModelsTests(TestCase):
             is_published=True,
             name="test",
             slug="test-tag-slug",
+        )
+        cls.item = catalog.models.Item.objects.create(
+            is_published=True,
+            name="test-item-098",
+            text="превосходно",
+            category=cls.category,
         )
 
     def test_unable_create_without_specific_words(self):
@@ -137,4 +144,50 @@ class ModelsTests(TestCase):
         tag.save()
         self.assertEqual(
             catalog.models.Category.objects.count(), item_count + 1
+        )
+
+    def test_catalog_correct_context(self):
+        response = django.test.Client().get(
+            django.urls.reverse("catalog:list")
+        )
+        self.assertIn("items", response.context)
+        self.assertEqual(response.context["items"].count(), 1)
+
+    def test_catalog_detail_correct_context(self):
+        response = django.test.Client().get(
+            django.urls.reverse("catalog:detail", args=[self.item.pk])
+        )
+        self.assertIn("item", response.context)
+
+
+class OrderTests(TestCase):
+    @parameterized.expand(
+        [
+            (("a", "b", "c"), (1, 2, 3)),
+            (("b", "a", "c", "d"), (2, 1, 3, 4)),
+            (("c", "a", "b"), (2, 3, 1)),
+        ]
+    )
+    def test_catalog_items_orderby_category(
+        self, categories_names, expecting_ids
+    ):
+        for i in categories_names:
+            category = catalog.models.Category.objects.create(
+                is_published=True,
+                name=i,
+                slug="test-category" + i,
+                weight=100,
+            )
+            catalog.models.Item.objects.create(
+                is_published=True,
+                name="test-item" + i,
+                text="превосходно",
+                category=category,
+            )
+        response = django.test.Client().get(
+            django.urls.reverse("catalog:list")
+        )
+        self.assertTupleEqual(
+            tuple(map(lambda x: x.id, response.context["items"])),
+            expecting_ids,
         )
