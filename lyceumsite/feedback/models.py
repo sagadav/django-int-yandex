@@ -7,5 +7,4 @@ class Feedback(models.Model):
     created_on = models.DateField(auto_now_add=True)
 
     class Meta:
-        verbose_name = "Товар"
-        verbose_name_plural = "Товары"
+        verbose_name = "Обратная связь"
