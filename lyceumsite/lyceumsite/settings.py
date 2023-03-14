@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "catalog.apps.CatalogConfig",
     "about.apps.AboutConfig",
     "homepage.apps.HomepageConfig",
+    "feedback.apps.FeedbackConfig",
     "sorl.thumbnail",
     "debug_toolbar",
     "django_cleanup.apps.CleanupConfig",
@@ -170,3 +171,6 @@ def sorl_delete(**kwargs):
 
 
 cleanup_pre_delete.connect(sorl_delete)
+
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
