@@ -2,19 +2,18 @@ from django.db import models
 
 
 class Feedback(models.Model):
+    class Status(models.TextChoices):
+        RECEIVED = "received", "Получено"
+        PENDING = "pending", "В обработке"
+        ANSWERED = "answered", "Ответ дан"
+
     mail = models.EmailField(max_length=80)
     text = models.TextField()
-    RECEIVED = "received"
-    PENDING = "pending"
-    ANSWERED = "answered"
+
     status = models.CharField(
         max_length=20,
-        choices=[
-            (RECEIVED, "получено"),
-            (PENDING, "в обработке"),
-            (ANSWERED, "ответ дан"),
-        ],
-        default=PENDING,
+        choices=Status.choices,
+        default=Status.RECEIVED,
     )
     created_on = models.DateField(auto_now_add=True)
 
