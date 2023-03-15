@@ -3,6 +3,7 @@ import os
 from django.core.mail import send_mail
 from django.shortcuts import redirect, render
 from django.urls import reverse
+from django.contrib import messages
 
 from . import forms
 
@@ -20,7 +21,9 @@ def feedback(request):
             [mail],
             fail_silently=False,
         )
-        return redirect(reverse("feedback:thankyou"))
+        messages.success(request, "Сообщение отправлено!")
+        form = forms.FeedbackForm()
+        context["form"] = form
     return render(request, "feedback/feedback.html", context)
 
 
