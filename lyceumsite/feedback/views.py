@@ -24,7 +24,3 @@ def feedback(request):
         form = forms.FeedbackForm()
         context["form"] = form
     return render(request, "feedback/feedback.html", context)
-
-
-def thankyou(request):
-    return render(request, "feedback/thankyou.html")
