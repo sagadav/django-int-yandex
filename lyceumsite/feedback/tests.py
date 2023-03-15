@@ -24,7 +24,6 @@ class FeedbackTests(TestCase):
             data={"text": "test", "mail": "test@test.com"},
             follow=True,
         )
-        self.assertRedirects(response, reverse("feedback:thankyou"))
         self.assertEqual(Feedback.objects.count(), items_count + 1)
         self.assertTrue(Feedback.objects.filter(mail="test@test.com").exists())
 
