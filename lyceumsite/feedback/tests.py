@@ -19,6 +19,10 @@ class FeedbackTests(TestCase):
 
     def test_feedback_form(self):
         items_count = Feedback.objects.count()
+        Client().post(
+            reverse("feedback:feedback"),
+            data={"text": "test", "mail": "test@test.com"},
+        )
         self.assertEqual(Feedback.objects.count(), items_count + 1)
         self.assertTrue(Feedback.objects.filter(mail="test@test.com").exists())
 
