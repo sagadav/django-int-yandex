@@ -4,7 +4,7 @@ from django.core.mail import send_mail
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
-from . import forms
+from . import forms, models
 
 
 def feedback(request):
@@ -13,6 +13,8 @@ def feedback(request):
     if form.is_valid():
         text = form.cleaned_data["text"]
         mail = form.cleaned_data["mail"]
+        feedback_model = models.Feedback(mail=mail, text=text)
+        feedback_model.save()
         send_mail(
             "Subject here",
             text,
