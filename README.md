@@ -26,6 +26,7 @@ py manage.py runserver
 SECRET_KEY - секретный ключ
 DEBUG - режим дебага
 ALLOWED_HOSTS - разрешенные хосты
+FEEDBACK_EMAIL_FROM - почта, с которой уходит письмо (обратная связь)
 ```
 
 ### Работа с фикстурами (Fixtures):
