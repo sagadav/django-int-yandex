@@ -16,6 +16,11 @@ urlpatterns = [
         name="login",
     ),
     path(
+        "logout/",
+        django.contrib.auth.views.LogoutView.as_view(),
+        name="logout",
+    ),
+    path(
         "password_change/",
         django.contrib.auth.views.PasswordChangeView.as_view(
             template_name="users/pass_change.html",
@@ -61,10 +66,8 @@ urlpatterns = [
         name="password_reset_complete",
     ),
     path(
-        "activate/",
-        django.contrib.auth.views.PasswordResetCompleteView.as_view(
-            template_name="users/pass_reset_complete.html"
-        ),
+        "activate/<uidb64>/<token>/",
+        views.activate,
         name="activate",
     ),
 ]

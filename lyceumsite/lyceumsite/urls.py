@@ -16,7 +16,6 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-import django.contrib.auth.urls
 from django.urls import include, path
 
 urlpatterns = [
@@ -26,7 +25,6 @@ urlpatterns = [
     path("about/", include("about.urls")),
     path("feedback/", include("feedback.urls")),
     path("auth/", include("users.urls")),
-    path("auth/", include(django.contrib.auth.urls)),
     path("tinymce/", include("tinymce.urls")),
 ]
 
