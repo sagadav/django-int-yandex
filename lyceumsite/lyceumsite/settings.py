@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "about.apps.AboutConfig",
     "homepage.apps.HomepageConfig",
     "feedback.apps.FeedbackConfig",
+    "users.apps.UsersConfig",
     "sorl.thumbnail",
     "debug_toolbar",
     "django_cleanup.apps.CleanupConfig",
@@ -106,19 +107,23 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation."
         "UserAttributeSimilarityValidator",
     },
-    {
-        "NAME": "django.contrib.auth.password_validation."
-        "MinimumLengthValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation."
-        "CommonPasswordValidator",
-    },
+    # {
+    # "NAME": "django.contrib.auth.password_validation."
+    # "MinimumLengthValidator",
+    # },
+    # {
+    #     "NAME": "django.contrib.auth.password_validation."
+    #     "CommonPasswordValidator",
+    # },
     {
         "NAME": "django.contrib.auth.password_validation."
         "NumericPasswordValidator",
     },
 ]
+
+# auth
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/auth/login"
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
@@ -174,3 +179,9 @@ cleanup_pre_delete.connect(sorl_delete)
 
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = "youremail@gmail.com"
+# EMAIL_HOST_PASSWORD = 'yourpassword'
+EMAIL_PORT = 587
