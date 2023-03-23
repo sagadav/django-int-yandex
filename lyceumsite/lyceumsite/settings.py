@@ -183,3 +183,5 @@ EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
 USER_IS_ACTIVE = os.environ.get("USER_IS_ACTIVE") in ("true", "True")
 
 PASSWORD_RESET_TIMEOUT = 43200  # 12 hours
+
+AUTHENTICATION_BACKENDS = ["users.backends.EmailOrUsernameModelBackend"]

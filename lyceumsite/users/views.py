@@ -11,6 +11,8 @@ from django.template.loader import render_to_string
 import django.utils.encoding
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from users.models import ProxyUser
+
 
 from . import forms, tokens
 
@@ -63,12 +65,12 @@ def activate(request, uidb64, token):
 
 
 def user_list(request):
-    users = User.objects.filter(is_active=True)
+    users = ProxyUser.objects.all()
     return render(request, "users/user_list.html", {"users": users})
 
 
 def user_detail(request, pk):
-    user = get_object_or_404(User, pk=pk)
+    user = get_object_or_404(ProxyUser, pk=pk)
     return render(request, "users/user_detail.html", {"user": user})
 
 
