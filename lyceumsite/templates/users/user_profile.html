@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_title %}Профиль{% endblock page_title %}
+{% block content %}
+<h1 class="mb-2">Твой профиль</h1>
+{% include 'includes/form.html' %}
+<form method="POST">
+  {% csrf_token %}
+  <p>Выпито: {{ coffee_count|default:"0" }}</p>
+  <button type="submit" name="coffee" value="coffee" class="btn btn-primary mb-3">Выпить кофе</button>
+</form>
+{% endblock content %}

@@ -180,8 +180,6 @@ cleanup_pre_delete.connect(sorl_delete)
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
 
-EMAIL_USE_TLS = True
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = "youremail@gmail.com"
-# EMAIL_HOST_PASSWORD = 'yourpassword'
-EMAIL_PORT = 587
+USER_IS_ACTIVE = os.environ.get("USER_IS_ACTIVE") in ("true", "True")
+
+PASSWORD_RESET_TIMEOUT = 43200  # 12 hours

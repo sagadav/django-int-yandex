@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_title %}Список пользователей{% endblock page_title %}
+{% block content %}
+<h1 class="mb-2">Список пользователей</h1>
+{% for user in users %}
+  <a href="{% url 'users:user_detail' pk=user.pk %}" class="card p-4 mb-2">{{ user.username }}</a>
+{% endfor %}
+{% endblock content %}
