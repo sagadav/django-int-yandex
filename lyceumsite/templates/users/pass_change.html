@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_title %}Смена пароля{% endblock page_title %}
+{% block content %}
+<h1 class="mb-2">Смена пароля</h1>
+<div>
+  {% if messages %}
+  <div class="messages">
+      {% for message in messages %}
+      <div{% if message.tags %} class="alert alert-{{ message.tags }} mb-2"{% endif %}>{{ message }}</div>
+      {% endfor %}
+  </div>
+  {% endif %}
+  {% include 'includes/form.html' %}
+</div>
+{% endblock content %}

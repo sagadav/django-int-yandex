@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "about.apps.AboutConfig",
     "homepage.apps.HomepageConfig",
     "feedback.apps.FeedbackConfig",
+    "users.apps.UsersConfig",
     "sorl.thumbnail",
     "debug_toolbar",
     "django_cleanup.apps.CleanupConfig",
@@ -108,17 +109,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         "NAME": "django.contrib.auth.password_validation."
-        "MinimumLengthValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation."
-        "CommonPasswordValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation."
         "NumericPasswordValidator",
     },
 ]
+
+# auth
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/auth/login"
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
@@ -174,3 +171,7 @@ cleanup_pre_delete.connect(sorl_delete)
 
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
+
+USER_IS_ACTIVE = os.environ.get("USER_IS_ACTIVE") in ("true", "True")
+
+PASSWORD_RESET_TIMEOUT = 43200  # 12 hours

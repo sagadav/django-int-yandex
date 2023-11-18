@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_title %}Пользователь{% endblock page_title %}
+{% block content %}
+<h1 class="mb-2">{{ user.username }}</h1>
+<h3>Имя: <span class="{% if user.first_name == "" %}fst-italic{% endif %}">
+  {{ user.first_name|default:"Не указано" }}
+</span></h3>
+<h3>Фамилия: <span class="{% if user.first_name == "" %}fst-italic{% endif %}">
+  {{ user.last_name|default:"Не указано" }}
+</span></h3>
+{% if user.profile.birthday %}
+  <h3>День рождения: {{ user.profile.birthday }}</h3>
+{% endif %}
+<h3>Сколько раз человек попытался выпить кофе: {{ user.profile.coffee_count|default:"0" }}</h3>
+{% if user.profile.image %}
+  <img src="{{ user.profile.get_image_300x300.url }}" class="col-md-4" />
+{% endif %}
+{% endblock content %}

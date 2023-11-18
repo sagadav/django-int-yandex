@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_title %}Ура{% endblock page_title %}
+{% block content %}
+{% if done %}
+<h1 class="mb-2">Вы зарегистрированы</h1>
+{% else %}
+<h1 class="mb-2">Срок регистрации истек</h1>
+{% endif %}
+<a  href="{% url 'home:index' %}">Перейти на главную страницу</a>
+{% endblock content %}

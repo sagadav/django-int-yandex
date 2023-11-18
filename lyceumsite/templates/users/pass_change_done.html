@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_title %}Ура{% endblock page_title %}
+{% block content %}
+<h1 class="mb-2">Вы поменяли пароль</h1>
+<a  href="{% url 'home:index' %}">Перейти на главную страницу</a>
+{% endblock content %}
