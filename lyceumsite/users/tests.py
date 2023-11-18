@@ -1,5 +1,5 @@
+from django.contrib.auth.models import User
 from datetime import datetime, timedelta
-
 from django.core import mail
 from django.test import Client, TestCase
 from django.urls import reverse
@@ -18,7 +18,7 @@ class UsersTests(TestCase):
         self.assertIn("form", response.context)
         self.assertEqual(len(mail.outbox), 1)
 
-    def test_signup_activate(self):
+    def test_signup_activate_expire(self):
         form_data = {
             "email": "test@mail.ru",
             "username": "test-uniq-test",
@@ -34,6 +34,25 @@ class UsersTests(TestCase):
         )
         self.assertTrue(response_activate.context["done"])
 
+    def test_login(self):
+        user = User.objects.create(
+            email="test@hello.com",
+            username="test",
+            is_active=True,
+        )
+        user.set_password("123a")
+        user.save()
+        form_data = {
+            "username": "test",
+            "password": "123a",
+        }
+        response = Client().post(
+            reverse("users:login"), data=form_data, follow=True
+        )
+        self.assertRedirects(response, "/")
+        self.assertIn("user", response.context)
+        self.assertEqual(response.context["user"].username, "test")
+        
     @freeze_time("2012-01-14")
     def test_signup_activate_expire(self):
         form_data = {

@@ -5,6 +5,18 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
+class ProxyUserManager(models.Manager):
+    def all(self):
+        return super().filter(is_active=True).select_related("profile")
+
+
+class ProxyUser(User):
+    objects = ProxyUserManager()
+
+    class Meta:
+        proxy = True
+
+
 class Profile(core.models.BaseImage):
     user = models.OneToOneField(
         User,
